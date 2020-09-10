@@ -1,0 +1,17 @@
+   // эти фичи сохраняют значение переменных при повороте экрана, чтобы не сбросились
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("count", result); // передаем, что сохранять по ключу "count"
+        outState.putInt("price", price);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        result = savedInstanceState.getInt("count"); // вынимаем по ключу "count" значение
+        price = savedInstanceState.getInt("price");
+        count.setText(Integer.toString(result));
+        orderSummaryTextView.setText("$" + price);
+    }
+}
